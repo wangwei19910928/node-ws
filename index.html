@@ -62,32 +62,60 @@
             color: #3498db;
         }
 
-        /* Hero section */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(rgba(44, 62, 80, 0.4), rgba(44, 62, 80, 0.4)), url('https://source.unsplash.com/random/1600x900/?grassland,blue%20agate');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            color: white;
-        }
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 核心：蓝玛瑙渐变+草原纹理+轻微噪点，纯CSS实现 */
+    background: 
+      /* 轻微噪点纹理，模拟玛瑙质感 */
+      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.05) 100%),
+      /* 主渐变：呼伦贝尔蓝（天青蓝→湖蓝→深青蓝），模拟草原湖泊+蓝玛瑙色调 */
+      linear-gradient(135deg, 
+        #1e88e5 0%, 
+        #0d47a1 50%, 
+        #002147 100%);
+    /* 叠加一层半透明蒙版，提升文字可读性 */
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.3);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+    /* 增加轻微的动画呼吸效果，更灵动 */
+    animation: bgBreath 15s ease-in-out infinite alternate;
+}
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 64px;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
-        }
+/* 呼吸动画：背景渐变轻微位移，模拟光影变化 */
+@keyframes bgBreath {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 10% 10%;
+    }
+}
 
-        .hero p {
-            font-size: 24px;
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeInUp 1.2s ease;
-        }
+/* 优化文字样式，和背景更搭配 */
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease;
+    /* 文字描边+阴影，提升层次感 */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3),
+                 0 0 20px rgba(255,255,255,0.1);
+    -webkit-text-stroke: 0.5px rgba(255,255,255,0.2);
+}
+
+.hero p {
+    font-size: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInUp 1.2s ease;
+    /* 文字阴影，增强可读性 */
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
 
         /* Product display section */
         .product-section {
@@ -393,3 +421,4 @@
 </body>
 
 </html>
+
